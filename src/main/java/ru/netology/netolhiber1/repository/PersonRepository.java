@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class PersonRepository {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public List<Person> getPersonByCity(String city){
         String query = "SELECT person from Person person where person.city = ?1";
