@@ -1,21 +1,16 @@
 package ru.netology.netolhiber1.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 import ru.netology.netolhiber1.entity.Person;
+import ru.netology.netolhiber1.entity.PersonPK;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class PersonRepository {
-    @PersistenceContext
-    EntityManager entityManager;
+public interface PersonRepository extends CrudRepository<Person, PersonPK> {
+        public List<Person> getPersonByCity(String city);
 
-    public List<Person> getPersonByCity(String city){
-        String query = "SELECT person from Person person where person.city = ?1";
-        return entityManager.createQuery(query)
-                .setParameter(1, city)
-                .getResultList();
-    }
+        public List<Person> getPersonByAgeBeforeOrderByAge(int age);
+
+        public Optional<Person> getPersonByNameAndSurname (String name, String surname);
 }
