@@ -17,17 +17,17 @@ import java.util.Optional;
 public class PersonController {
     private final PersonRepository personRepository;
 
-    @GetMapping("/persons/by-city")
+    @GetMapping("persons/by-city")
     public List<Person> getPersonByCity(@RequestParam String city){
         return personRepository.getPersonByCity(city);
     }
 
-    @GetMapping("/persons/by-age")
+    @GetMapping("persons/by-age")
     public List<Person> getPersonByAge(@RequestParam int age){
         return personRepository.getPersonByAgeBeforeOrderByAge(age);
     }
 
-    @GetMapping("/persons/by-name-surname")
+    @GetMapping("persons/by-name-surname")
     public Optional<Person> getPersonByNameSurname(@RequestParam String name, @RequestParam String surname){
         return personRepository.getPersonByNameAndSurname(name, surname);
     }
